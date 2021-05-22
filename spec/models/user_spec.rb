@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
       @user.email = 'aaaaaaa'
       @user.valid?
       expect(@user.errors.full_messages).to include "Email is invalid"
-    end
+     end
     it 'passwordが空だと登録できない' do
       @user.password = ''
       @user.valid?
@@ -127,6 +127,7 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "Birthday can't be blank"
     end
+  
   end
-  end
+end
 end
