@@ -31,7 +31,7 @@
 | status_id          | integer    | null: false                    |
 | delivery_charge_id | integer    | null: false                    |
 | area_id            | integer    | null: false                    |
-| ahipping_date_id   | integer    | null: false                    |
+| shipping_date_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
