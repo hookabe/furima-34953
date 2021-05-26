@@ -19,7 +19,7 @@ class Product < ApplicationRecord
       validates :status_id
       validates :delivery_charge_id
       validates :area_id
-      validates :ahipping_date_id
+      validates :shipping_date_id
     end
   
     with_options format: { with: /\A[0-9]+\z/} do
