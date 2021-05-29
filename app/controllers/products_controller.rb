@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only:[:new]
 
   def index
   end
-  
+
   def new
     @product = Product.new
   end
@@ -23,4 +24,5 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :text, :category_id, :status_id, :delivery_charge_id, :area_id, :shipping_date_id, :price, :image).merge(user_id: current_user.id)
   end
 
+  
 end
