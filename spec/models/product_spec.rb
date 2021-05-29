@@ -62,13 +62,13 @@ describe '商品出品' do
     end
 
     it "priceが300以下では登録できない" do
-      @product.price = '299'
+      @product.price = 299
       @product.valid?
       expect(@product.errors.full_messages).to include "Price must be greater than or equal to 300"
     end
 
     it "priceが9,999,999以上では登録できない" do
-      @product.price = '10000000'
+      @product.price = 10000000
       @product.valid?
       expect(@product.errors.full_messages).to include "Price must be less than or equal to 9999999"
     end
@@ -83,6 +83,42 @@ describe '商品出品' do
       @product.image = nil
       @product.valid?
       expect(@product.errors.full_messages).to include("Image can't be blank")
+    end
+
+    it "priceが英数字混合では出品出来ない" do
+      @product.price = '500a'
+      @product.valid?
+      expect(@product.errors.full_messages).to include "Price is not a number"
+    end
+
+    it "category_idが1では登録できない" do
+      @product.category_id = '1'
+      @product.valid?
+      expect(@product.errors.full_messages).to include "Category must be other than 1"
+    end
+
+    it "status_idが1では登録できない" do
+      @product.status_id = '1'
+      @product.valid?
+      expect(@product.errors.full_messages).to include "Status must be other than 1"
+    end
+
+    it "delivery_charge_idが1では登録できない" do
+      @product.delivery_charge_id = '1'
+      @product.valid?
+      expect(@product.errors.full_messages).to include "Delivery charge must be other than 1"
+    end
+
+    it "area_idが1では登録できない" do
+      @product.area_id = '1'
+      @product.valid?
+      expect(@product.errors.full_messages).to include "Area must be other than 1"
+    end
+
+    it "shipping_date_idが1では登録できない" do
+      @product.shipping_date_id = '1'
+      @product.valid?
+      expect(@product.errors.full_messages).to include "Shipping date must be other than 1"
     end
 
   end
