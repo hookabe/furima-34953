@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create]
 
   def index
+    @products = Product.all
+    @product = Product.find_by(delivery_charge_id: params[:id])
   end
 
   def new
