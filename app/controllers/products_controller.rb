@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :move_index, only: [:edit, :update], unless: proc { current_user.id == @product.user_id }
+  before_action :move_index, only: [:edit, :update, :destroy], unless: proc { current_user.id == @product.user_id }
 
   def index
     @products = Product.all.order(created_at: 'DESC')
