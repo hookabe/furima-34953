@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_product, only: [:show, :edit, :update]
-  before_action :move_index, only: [:edit, :update], unless: proc { current_user.id == @product.user_id }
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :move_index, only: [:edit, :update, :destroy], unless: proc { current_user.id == @product.user_id }
 
   def index
     @products = Product.all.order(created_at: 'DESC')
@@ -21,6 +21,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+    @product.destroy
+    redirect_to root_path
+  end
+
   def new
     @product = Product.new
   end
@@ -33,8 +38,6 @@ class ProductsController < ApplicationController
       render :new
     end
   end
-
-  
 
   private
 
@@ -50,5 +53,4 @@ class ProductsController < ApplicationController
   def move_index
     redirect_to action: :index
   end
-
 end
