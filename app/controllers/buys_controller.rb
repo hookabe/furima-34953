@@ -2,7 +2,7 @@ class BuysController < ApplicationController
   before_action :set_product, only: [:create, :index]
 
   def index
-   
+    @buy_shipping = BuyShipping.new
   end
 
   def new
