@@ -1,5 +1,10 @@
 class BuysController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_product, only: [:create, :index]
+  before_action :move_root_path, only: [:index, :create], if: proc { current_user.id == @product.user_id }
+  before_action :move_root_path, only: [:index, :create], if: proc { @product.buy.present? }
+
+  
 
   def index
     @buy_shipping = BuyShipping.new
@@ -26,6 +31,10 @@ class BuysController < ApplicationController
   end
     def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def move_root_path
+    redirect_to root_path
   end
 
 end
