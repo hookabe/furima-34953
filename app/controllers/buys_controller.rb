@@ -11,7 +11,7 @@ class BuysController < ApplicationController
   end
 
   def new
-    @buy_shipping = BuyShipping.new
+ 
   end
 
   def create
