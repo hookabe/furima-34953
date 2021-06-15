@@ -10,6 +10,7 @@ class BuyShipping
     validates :city
     validates :street
     validates :phone_number, format: { with: /\A\d{10}$|^\d{11}\z/ }
+    validates :token
   end
   
   def save
