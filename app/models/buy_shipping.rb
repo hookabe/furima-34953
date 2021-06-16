@@ -1,11 +1,11 @@
 class BuyShipping
   include ActiveModel::Model
-  attr_accessor :postal_code, :area_id, :city, :street, :building, :phone_number, :user_id, :product_id, :buy_id, :token
+  attr_accessor :postal_code, :area_id, :city, :street, :building, :phone_number, :user_id, :product_id, :token
 
   with_options presence: true do
     validates :user_id
     validates :product_id
-    validates :area_id, numericality: {other_than: 0, message: "can't be blank"}
+    validates :area_id, numericality: {other_than: 1}
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :city
     validates :street

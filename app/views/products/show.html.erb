@@ -24,8 +24,8 @@
     </div>
 
  
-    <% if user_signed_in? %>
-     <% if @product.buy.blank? %> 
+    <% if user_signed_in? && @product.buy.blank?%>
+    
       <% if current_user.id == @product.user_id %>
        <%= link_to "商品の編集", edit_product_path(@product.id), method: :get, class: "item-red-btn" %>
        <p class="or-text">or</p>
@@ -36,7 +36,7 @@
       <%= link_to "購入画面に進む", product_buys_path(@product.id), method: :get, class:"item-red-btn"%>
       
       <% end %>
-     <% end %>
+     
     <% end %>
 
 

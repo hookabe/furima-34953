@@ -37,6 +37,11 @@ RSpec.describe BuyShipping, type: :model do
         @buy_shipping.valid?
         expect(@buy_shipping.errors.full_messages).to include("Area can't be blank")
       end
+      it 'area_idが1では登録できない' do
+        @buy_shipping.area_id = 1
+        @buy_shipping.valid?
+        expect(@buy_shipping.errors.full_messages).to include("Area must be other than 1")
+      end
       it 'cityが空では保存できないこと' do
         @buy_shipping.city = ''
         @buy_shipping.valid?
@@ -59,6 +64,16 @@ RSpec.describe BuyShipping, type: :model do
       end
       it 'phone_numberは数値のみでないと保存できないこと' do
         @buy_shipping.phone_number = '090-1234-5678'
+        @buy_shipping.valid?
+        expect(@buy_shipping.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'phone_numberは数値のみでないと保存できないこと(英数字混合)' do
+        @buy_shipping.phone_number = '0901234567a'
+        @buy_shipping.valid?
+        expect(@buy_shipping.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'phone_numberは全角数字では保存できないこと' do
+        @buy_shipping.phone_number = '０９０１２３４５６７８'
         @buy_shipping.valid?
         expect(@buy_shipping.errors.full_messages).to include("Phone number is invalid")
       end
