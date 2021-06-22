@@ -31,6 +31,14 @@
   min-height: 500px;
   background-color: rgb(205, 202, 202);
   object-fit: contain;
+  display: flex;
+}
+
+.images {
+  padding: 10vh 0;
+  height: 300px;
+  width: 300px;
+  object-fit: contain;
 }
 
 .item-price-box {
